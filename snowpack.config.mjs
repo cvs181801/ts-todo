@@ -11,7 +11,9 @@ export default {
         /* Yarn PnP workaround: see https://www.npmjs.com/package/@snowpack/plugin-typescript */
         ...(process.versions.pnp ? { tsc: 'yarn pnpify tsc' } : {}),
       },
+      
     ],
+    //['@snowpack/plugin-run-script', {cmd: "npx tsc", watch: "$1 --watch", output: "stream"}]
   ],
   routes: [
     /* Enable an SPA Fallback in development: */
