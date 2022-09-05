@@ -10,8 +10,6 @@ const form = document.querySelector<HTMLFormElement>('#new-task-form');
 const titleInput = document.querySelector<HTMLInputElement>('#new-task-title');
 
 
-//create a way for the add button to add text to the array of to do items
-
 let toDoArray: any[] = [];
 
 form?.addEventListener("submit", e => {
@@ -19,48 +17,38 @@ form?.addEventListener("submit", e => {
   if (titleInput?.value == null) return;
 
   type taskObj = {
-     taskTitle?: string,
+     taskTitle: string,
      completed: boolean,
      created_at: any
   }
   const task: taskObj = {
-     taskTitle: `${titleInput.value}`,
+     taskTitle: titleInput.value,
      completed: false,
      created_at: new Date() 
    }
 
   addListItem(task)
+  console.log(task.created_at)
   
 })
 
-//Generics.  Used to create reusable components (in this case a  reusable function)
-
-// function getCoolArray<T>(items: T[]): T[] {
-//   return new Array().concat(items)
-
-// }
-// let numberArr = getCoolArray<number>([1,3,5,7])
-// let stringArr = getCoolArray<string>(["hi","what","is","up"])
-
-
-//loop through array and render them all to the screen.  each should have 1. a checkbox 2. a delete button
-
-
-
-function addListItem(newTask: any):any {
-  let lineItem = document.createElement('li');
-  let label = document.createElement('label');
-  let checkbox = document.createElement('input');
+function addListItem(newTask: {taskTitle: string, completed: boolean, created_at: any}):void {
+  let lineItem:HTMLLIElement = <HTMLLIElement>document.createElement('li');
+  let label:HTMLLabelElement = <HTMLLabelElement>document.createElement('label');
+  let checkbox:HTMLInputElement = <HTMLInputElement>document.createElement('input');
+  checkbox.type = 'checkbox';
   let deleteBtn:HTMLButtonElement=<HTMLButtonElement>document.createElement('button')
   deleteBtn.textContent = "delete"
+
   function deleteLineItem(): void {
     list?.removeChild(lineItem);
    }
+
   deleteBtn.addEventListener('click', (e)=>{
     e.preventDefault();
     deleteLineItem()
   }) 
-  checkbox.type = 'checkbox';
+
   label.append(checkbox, newTask.taskTitle)
   lineItem.append(label);
   lineItem.append(deleteBtn)
