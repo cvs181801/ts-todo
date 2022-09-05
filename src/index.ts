@@ -8,12 +8,18 @@ confetti.create(document.getElementById('canvas') as HTMLCanvasElement, {
 const list = document.querySelector<HTMLUListElement>('#list');
 const form = document.querySelector<HTMLFormElement>('#new-task-form');
 const titleInput = document.querySelector<HTMLInputElement>('#new-task-title');
+const dateInput = document.querySelector<HTMLInputElement>('#new-task-due-date')
+
+console.log('due date', dateInput)
 
 
 let toDoArray: any[] = [];
 
 form?.addEventListener("submit", e => {
   e.preventDefault();
+  let dateValue = dateInput?.value
+  //let dateValueStr:any = new Date.parse(dateValue);
+
   if (titleInput?.value == null) return;
 
   let date:any = new Date();
@@ -48,7 +54,8 @@ function addListItem(newTask: {taskTitle: string, completed: boolean, created_at
 
   checkbox.addEventListener('change', (e)=> {
     e.preventDefault();
-    label.style.setProperty("text-decoration", "line-through");
+    newTask.completed = !newTask.completed;
+    newTask.completed ? label.style.setProperty("text-decoration", "line-through") : label.style.setProperty("text-decoration", "none");
   })
 
   function deleteLineItem(): void {
