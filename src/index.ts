@@ -11,36 +11,50 @@ const list = document.querySelector<HTMLUListElement>('#list');
 const form = document.querySelector<HTMLFormElement>('#new-task-form');
 const titleInput = document.querySelector<HTMLInputElement>('#new-task-title');
 
+
 //create a way for the add button to add text to the array of to do items
 
-let toDoArray: string[] = [];
-let checkbox = document.createElement('input')
+let toDoArray: any[] = [];
 
 form?.addEventListener("submit", e => {
   e.preventDefault();
   if (titleInput?.value == null) return;
 
-  // let task = {
-  //   taskTitle: titleInput.value,
-  //   checkbox: 
+  type taskObj = {
+     taskTitle?: string,
+     completed: boolean,
+     created_at: any
+  }
+  const task: taskObj = {
+     taskTitle: `${titleInput.value}`,
+     completed: false,
+     created_at: new Date() 
+   }
 
-
-  // }
-
-  //toDoArray.push(task);
-  
-  //console.log(titleInput.value)
-  console.log(toDoArray)
+  addListItem(task)
 })
 
 
-console.log('hey!')
-console.log(list)
-console.log(form)
-console.log(titleInput)
-
 //loop through array and render them all to the screen.  each should have 1. a checkbox 2. a delete button
 
-// toDoArray.forEach((todo)=>{
-//   let toDoItem: string = 
-// })
+function addListItem(newTask: any):any {
+  toDoArray.push(newTask);
+  console.log(newTask.taskTitle)
+  console.log('toDoArray', toDoArray)
+  let lineItem = document.createElement('li');
+  let label = document.createElement('label');
+  let checkbox = document.createElement('input');
+  let deleteBtn = document.createElement('button')
+  deleteBtn.textContent = "delete"
+  checkbox.type = 'checkbox';
+  label.append(checkbox, newTask.taskTitle)
+  lineItem.append(label);
+  lineItem.append(deleteBtn)
+  list?.append(lineItem);
+  //toDoArray.forEach((todo)=>{
+  //lineItem.innerText = todo.taskTitle;
+  //
+  //card.append(toDoItem);
+  //toDoItem.textContent = todo.taskTitle;
+ // })
+}
