@@ -1,5 +1,3 @@
-
-
 import confetti from 'canvas-confetti';
 
 confetti.create(document.getElementById('canvas') as HTMLCanvasElement, {
@@ -32,29 +30,39 @@ form?.addEventListener("submit", e => {
    }
 
   addListItem(task)
+  
 })
+
+//Generics.  Used to create reusable components (in this case a  reusable function)
+
+// function getCoolArray<T>(items: T[]): T[] {
+//   return new Array().concat(items)
+
+// }
+// let numberArr = getCoolArray<number>([1,3,5,7])
+// let stringArr = getCoolArray<string>(["hi","what","is","up"])
 
 
 //loop through array and render them all to the screen.  each should have 1. a checkbox 2. a delete button
 
+
+
 function addListItem(newTask: any):any {
-  toDoArray.push(newTask);
-  console.log(newTask.taskTitle)
-  console.log('toDoArray', toDoArray)
   let lineItem = document.createElement('li');
   let label = document.createElement('label');
   let checkbox = document.createElement('input');
-  let deleteBtn = document.createElement('button')
+  let deleteBtn:HTMLButtonElement=<HTMLButtonElement>document.createElement('button')
   deleteBtn.textContent = "delete"
+  function deleteLineItem(): void {
+    list?.removeChild(lineItem);
+   }
+  deleteBtn.addEventListener('click', (e)=>{
+    e.preventDefault();
+    deleteLineItem()
+  }) 
   checkbox.type = 'checkbox';
   label.append(checkbox, newTask.taskTitle)
   lineItem.append(label);
   lineItem.append(deleteBtn)
   list?.append(lineItem);
-  //toDoArray.forEach((todo)=>{
-  //lineItem.innerText = todo.taskTitle;
-  //
-  //card.append(toDoItem);
-  //toDoItem.textContent = todo.taskTitle;
- // })
 }

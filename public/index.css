@@ -11,8 +11,16 @@
   margin: 2rem auto;
   width: 540px;
   height: 540px;
+  position: absolute;
 }
 
 #list {
   border: 1px solid red;
+  text-align: center;
+  list-style: none;
+}
+
+#new-task-form {
+  text-align: center;
+  margin: 0 auto;
 }
