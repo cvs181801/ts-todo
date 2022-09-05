@@ -21,7 +21,8 @@ h1{
   width: 540px;
   height: 540px;
   position: absolute;
-  left:33%;
+  left: 33%;
+  pointer-events: none;
 }
 
 #list {
@@ -34,12 +35,17 @@ h1{
   margin: 0 auto;
 }
 
+#new-task-title {
+  cursor: pointer;
+}
+
 #submitBtn {
   font-family: inherit;
   background: none;
   color: black;
   border: 1px solid black;
   border-radius: 3px;
+  cursor: pointer;
 }
 
 button {

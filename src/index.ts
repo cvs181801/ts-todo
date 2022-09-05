@@ -64,6 +64,10 @@ function addListItem(newTask: {taskTitle: string, completed: boolean, created_at
   lineItem.append(label);
   lineItem.append(paragraph);
   lineItem.append(deleteBtn);
-  //lineItem.style.setProperty("border", "1px solid aqua");
+  lineItem.style.setProperty("border", "1px solid rgb(122, 226, 109)");
+  lineItem.style.setProperty("border-radius", "7px");
+  lineItem.style.setProperty("margin",".5em auto 0 auto");
+  lineItem.style.setProperty("width", "30vw");
+  lineItem.style.setProperty("padding", ".3em");
   list?.append(lineItem);
 }
