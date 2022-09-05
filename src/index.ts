@@ -94,10 +94,10 @@ function addListItem(newTask: {taskTitle: string, completed: boolean, dueDate: s
   lineItem.append(createdAtP);
   lineItem.append(dueDateP);
   lineItem.append(deleteBtn);
-  lineItem.style.setProperty("border", "1px solid rgb(122, 226, 109)");
+  lineItem.style.setProperty("border", "1px solid rgb(36, 217, 245)");
   lineItem.style.setProperty("border-radius", "7px");
   lineItem.style.setProperty("margin",".5em auto 0 auto");
   lineItem.style.setProperty("width", "30vw");
-  lineItem.style.setProperty("padding", ".3em");
+  lineItem.style.setProperty("padding", ".3em"); //can we loop over these?
   list?.append(lineItem);
 }
