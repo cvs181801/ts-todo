@@ -1,3 +1,12 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1{
+  margin: 0 auto;
+  text-align: center;
+}
+
 #img {
   display: block;
   margin: auto;
@@ -12,10 +21,10 @@
   width: 540px;
   height: 540px;
   position: absolute;
+  left:33%;
 }
 
 #list {
-  border: 1px solid red;
   text-align: center;
   list-style: none;
 }
@@ -23,4 +32,20 @@
 #new-task-form {
   text-align: center;
   margin: 0 auto;
+}
+
+#submitBtn {
+  font-family: inherit;
+  background: none;
+  color: black;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+button {
+  font-family: inherit;
+  background: none;
+  color: grey;
+  border: 1px solid grey;
+  border-radius: 3px;
 }

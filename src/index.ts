@@ -16,29 +16,40 @@ form?.addEventListener("submit", e => {
   e.preventDefault();
   if (titleInput?.value == null) return;
 
+  let date:any = new Date();
+  let dateArr: string[] =  `${date}`.split(' ', 4);
+
   type taskObj = {
      taskTitle: string,
      completed: boolean,
-     created_at: any
+     created_at: string
   }
   const task: taskObj = {
      taskTitle: titleInput.value,
      completed: false,
-     created_at: new Date() 
+     created_at: dateArr.join(' ')
    }
 
   addListItem(task)
-  console.log(task.created_at)
   
 })
 
-function addListItem(newTask: {taskTitle: string, completed: boolean, created_at: any}):void {
+function addListItem(newTask: {taskTitle: string, completed: boolean, created_at: string}):void {
   let lineItem:HTMLLIElement = <HTMLLIElement>document.createElement('li');
   let label:HTMLLabelElement = <HTMLLabelElement>document.createElement('label');
   let checkbox:HTMLInputElement = <HTMLInputElement>document.createElement('input');
   checkbox.type = 'checkbox';
+
   let deleteBtn:HTMLButtonElement=<HTMLButtonElement>document.createElement('button')
   deleteBtn.textContent = "delete"
+
+  let paragraph:HTMLParagraphElement = <HTMLParagraphElement>document.createElement('p');
+  paragraph.textContent = `Created on: ${newTask.created_at}`
+
+  checkbox.addEventListener('change', (e)=> {
+    e.preventDefault();
+    label.style.setProperty("text-decoration", "line-through");
+  })
 
   function deleteLineItem(): void {
     list?.removeChild(lineItem);
@@ -51,6 +62,8 @@ function addListItem(newTask: {taskTitle: string, completed: boolean, created_at
 
   label.append(checkbox, newTask.taskTitle)
   lineItem.append(label);
-  lineItem.append(deleteBtn)
+  lineItem.append(paragraph);
+  lineItem.append(deleteBtn);
+  //lineItem.style.setProperty("border", "1px solid aqua");
   list?.append(lineItem);
 }
